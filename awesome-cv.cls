@@ -221,6 +221,7 @@
 \newcommand*{\paperlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 \newcommand*{\paperarchivestyle}[1]{{\href{#1}{\fontsize{8pt}{1em}\faDownload\,{\textit{\fontsize{8pt}{1em}\bodyfontlight\color{graytext} #1}}}}}
 \newcommand*{\papercodestyle}[1]{{\href{#1}{\fontsize{8pt}{1em}\faCode\,{\textit{\fontsize{8pt}{1em}\bodyfontlight\color{graytext} #1}}}}}
+\newcommand*{\paperwebsitestyle}[1]{{\href{#1}{\fontsize{8pt}{1em}\faHddO\,{\textit{\fontsize{8pt}{1em}\bodyfontlight\color{graytext} #1}}}}}
 
 % For elements of honor
 \newcommand*{\honortitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
@@ -593,6 +594,29 @@
 }{%
   \par
   \vspace{2mm}
+}
+
+% Define an environment for cvartifact
+\newenvironment{cvartifacts}{%
+  \vspace{\acvSectionContentTopSkip}
+  \begin{center}
+}{%
+  \end{center}
+}
+% Define an artifact of cv information
+% Usage: \cvartifact{<position>}{<title>}{<location>}{<date>}{<description>}{<artifact>}{<code>}
+\newcommand*{\cvartifact}[7]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}} \\
+    \paperwebsitestyle{#6} {\enskip\cdotp\enskip} \papercodestyle{#7} 
+  \end{tabular*}%
 }
 
 % Define an environment for cventry
