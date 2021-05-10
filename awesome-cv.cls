@@ -73,8 +73,7 @@
 % Needed to manage math fonts
 \RequirePackage{unicode-math}
 % Needed to use icons from font-awesome
-% (https://github.com/posquit0/latex-fontawesome)
-\RequirePackage{fontawesome}
+\RequirePackage{fontawesome5}
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
@@ -153,8 +152,8 @@
 \setbool{acvSectionColorHighlight}{true}
 
 % Awesome section color
-\def\@sectioncolor#1#2#3{%
-  \ifbool{acvSectionColorHighlight}{{\color{awesome}#1#2#3}}{#1#2#3}%
+\def\@sectioncolor{%
+  \ifbool{acvSectionColorHighlight}{\color{awesome}}{}%
 }
 
 
@@ -200,9 +199,9 @@
 
 % For elements of entry
 \newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
-\newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+\newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
 
 % For elements of subentry
@@ -212,20 +211,15 @@
 \newcommand*{\subentrylocationstyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 \newcommand*{\subdescriptionstyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\upshape\color{text} #1}}
 
-% For elements of paper
-\newcommand*{\paperauthorstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
-\newcommand*{\papertitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\paperdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
-\newcommand*{\paperlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
-\newcommand*{\paperarchivestyle}[1]{{\href{#1}{\fontsize{8pt}{1em}\faDownload\,{\textit{\fontsize{8pt}{1em}\bodyfontlight\color{graytext} #1}}}}}
-\newcommand*{\papercodestyle}[1]{{\href{#1}{\fontsize{8pt}{1em}\faCode\,{\textit{\fontsize{8pt}{1em}\bodyfontlight\color{graytext} #1}}}}}
-\newcommand*{\paperwebsitestyle}[1]{{\href{#1}{\fontsize{8pt}{1em}\faHddO\,{\textit{\fontsize{8pt}{1em}\bodyfontlight\color{graytext} #1}}}}}
-
 % For elements of honor
 \newcommand*{\honortitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
 \newcommand*{\honorpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\honordatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
-\newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+\newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
+
+% For elements of pub
+\newcommand*{\publocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+\newcommand*{\puburlstyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 
 % For elements of skill
 \newcommand*{\skilltypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
@@ -503,7 +497,7 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\acvHeaderIconSep\@linkedin}%
+          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedin\acvHeaderIconSep\@linkedin}%
         }%
       \ifthenelse{\isundefined{\@twitter}}%
         {}%
@@ -594,29 +588,6 @@
   \vspace{2mm}
 }
 
-% Define an environment for cvartifact
-\newenvironment{cvartifacts}{%
-  \vspace{\acvSectionContentTopSkip}
-  \begin{center}
-}{%
-  \end{center}
-}
-% Define an artifact of cv information
-% Usage: \cvartifact{<position>}{<title>}{<location>}{<date>}{<description>}{<artifact>}{<code>}
-\newcommand*{\cvartifact}[7]{%
-  \vspace{-2.0mm}
-  \setlength\tabcolsep{0pt}
-  \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-    \ifempty{#2#3}
-      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
-      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}} \\
-    \paperwebsitestyle{#6} {\enskip\cdotp\enskip} \papercodestyle{#7} 
-  \end{tabular*}%
-}
-
 % Define an environment for cventry
 \newenvironment{cventries}{%
   \vspace{\acvSectionContentTopSkip}
@@ -663,26 +634,6 @@
   \end{tabular*}
 }
 
-% Define an environment for cvpaper
-\newenvironment{cvpapers}{%
-  \vspace{\acvSectionContentTopSkip}
-  \vspace{-2mm}
-  \begin{center}
-    \setlength\tabcolsep{0pt}
-    \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
-}{%
-    \end{tabular*}
-  \end{center}
-}
-% Define a line of cv information(title, authors, etc.)
-% Usage: \cvhonor{<title>}{<authors>}{<location>}{<date>}{<archive>}{<source code>}
-\newcommand*{\cvpaper}[6]{%
-  \paperdatestyle{#4} & \papertitlestyle{#1} & \paperlocationstyle{#3} \\
-  & \paperauthorstyle{#2} \\
-  & \paperarchivestyle{#5} {\enskip\cdotp\enskip} \papercodestyle{#6} \\
-}
-
 % Define an environment for cvhonor
 \newenvironment{cvhonors}{%
   \vspace{\acvSectionContentTopSkip}
@@ -690,7 +641,7 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{1.0cm} L{\textwidth - 4.0cm} R{2.5cm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -701,6 +652,55 @@
   \honordatestyle{#4} & \honorpositionstyle{#1}, \honortitlestyle{#2} & \honorlocationstyle{#3} \\
 }
 
+% Define an environment for cvedu
+\newenvironment{cvedus}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+  \begin{center}
+    \setlength\tabcolsep{0pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{1.5cm} L{\textwidth - 4.5cm} R{2.5cm}}
+}{%
+    \end{tabular*}
+  \end{center}
+}
+
+% Define an environment for cvpub 
+\newenvironment{cvpubs}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+  \begin{center}
+    \setlength\tabcolsep{0pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{1.0cm} L{\textwidth - 3.0cm} R{1.5cm}}
+}{%
+    \end{tabular*}
+  \end{center}
+}
+
+% Define a line of cv publication
+% Usage: \cvpub{<title>}{<authors>}{<location>}{<date>}{<paper_url>}{<code_url>}
+\newcommand*{\cvpub}[6]{%
+  \honordatestyle{#4} & \honorpositionstyle{#1} & \publocationstyle{#3} \\
+                      & \honortitlestyle{#2}    & \\
+                      & 
+                      
+  \newbool{isstart}%
+  \setbool{isstart}{true}%
+  \ifempty{#5}
+    {}
+    {%
+      \puburlstyle{\href{https://#5}{\faFile*[regular]~ #5}}
+      \setbool{isstart}{false}%
+    }%
+  \ifempty{#6}
+    {}%
+    {%
+      \ifbool{isstart}{\setbool{isstart}{false}}{\puburlstyle{~~~\cdotp~~~}}%
+      \puburlstyle{\href{https://#6}{\faCodeBranch~ #6}}%
+    } & \\
+}
+
 % Define an environment for cvskill
 \newenvironment{cvskills}{%
   \vspace{\acvSectionContentTopSkip}
@@ -708,7 +708,7 @@
   \begin{center}
     \setlength\tabcolsep{1ex}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9}}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{\textwidth * \real{0.9}}}
 }{%
     \end{tabular*}
   \end{center}

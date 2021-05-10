@@ -20,6 +20,14 @@
 % A4 paper size by default, use 'letterpaper' for US letter
 \documentclass[11pt, letterpaper]{awesome-cv}
 
+% Set PDF metadata.
+\hypersetup{%
+  pdfauthor={Nicholas Chiang},
+  pdftitle={Nicholas Chiang | Resume},
+  pdfsubject={Resume for Nicholas Chiang},
+  pdfkeywords={Nicholas, Chiang, Tutorbook, Hammock, Niveaux de Gris, Resume}
+}
+
 % Format build date using ISO standards.
 \usepackage{datetime2}
 
@@ -57,12 +65,11 @@
 % Available options: circle|rectangle,edge/noedge,left/right
 % \photo[rectangle,edge,right]{./examples/profile}
 \name{Nicholas}{Chiang}
-\position{High School Student{\enskip\cdotp\enskip}Computer
-Science{\enskip\cdotp\enskip}Photography{\enskip\cdotp\enskip}Film}
-\address{Palo Alto, California, USA{\enskip\cdotp\enskip}No visa sponsorship required to work in the US}
+\position{High School Student{\enskip\cdotp\enskip}Web Development{\enskip\cdotp\enskip}Computer Science}
+\address{Palo Alto, California{\enskip\cdotp\enskip}No visa sponsorship required to work in the US}
 
 %\mobile{650-861-2723}
-\email{nicholas.h.chiang@gmail.com}
+\email{hi@nicholaschiang.com}
 \homepage{nicholaschiang.com}
 \github{nicholaschiang}
 \linkedin{nicholaschiang}
@@ -72,8 +79,8 @@ Science{\enskip\cdotp\enskip}Photography{\enskip\cdotp\enskip}Film}
 % \skype{skype-id}
 % \reddit{reddit-id}
 % \medium{madium-id}
-\googlescholar{BNFc5p8AAAAJ}{Nicholas Chiang}
-%% \firstname and \lastname will be used
+% \googlescholar{BNFc5p8AAAAJ}{Nicholas Chiang}
+% \firstname and \lastname will be used
 % \googlescholar{googlescholar-id}{}
 % \extrainfo{extra informations}
 
@@ -91,7 +98,7 @@ Science{\enskip\cdotp\enskip}Photography{\enskip\cdotp\enskip}Film}
 % Leave any of these blank if they are not needed
 \makecvfooter
   {\today}
-  {Nicholas Chiang~~~·~~~Résumé}
+  {Nicholas Chiang~~~·~~~Resume}
   {\thepage}
 
 
@@ -104,9 +111,10 @@ Science{\enskip\cdotp\enskip}Photography{\enskip\cdotp\enskip}Film}
 \input{src/experience.tex}
 %\input{src/honors.tex}
 %\input{src/presentation.tex}
-\input{src/papers.tex}
+\input{src/publications.tex}
 %\input{src/committees.tex}
 %\input{src/education.tex}
+\newpage
 \input{src/interests.tex}
 
 
