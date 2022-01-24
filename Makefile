@@ -1,2 +1,2 @@
 all:
-	tectonic resume.tex
+	tectonic dark.tex && tectonic light.tex
