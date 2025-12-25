@@ -163,37 +163,37 @@
 % Set font for header (default is Roboto)
 \newfontfamily\headerfont[
   Path=\@fontdir,
-  UprightFont=*-Regular,
-  ItalicFont=*-Italic,
-  BoldFont=*-Bold,
-]{Inter}
+  UprightFont=*-Buch,
+  ItalicFont=*-BuchKursiv,
+  BoldFont=*-Dreiviertelfett,
+]{TestSohne}
 
 \newfontfamily\headerfontlight[
   Path=\@fontdir,
-  UprightFont=*-Thin,
-  BoldFont=*-Medium,
-]{Inter}
+  UprightFont=*-Leicht,
+  BoldFont=*-Kraftig,
+]{TestSohne}
 
 \newfontfamily\footerfont[
   Path=\@fontdir,
-  UprightFont=*-Regular,
-  ItalicFont=*-Italic,
-  BoldFont=*-Bold,
-]{Inter}
+  UprightFont=*-Buch,
+  ItalicFont=*-BuchKursiv,
+  BoldFont=*-Dreiviertelfett,
+]{TestSohne}
 
 \newfontfamily\bodyfont[
   Path=\@fontdir,
-  UprightFont=*-Regular,
-  ItalicFont=*-Italic,
-  BoldFont=*-Bold,
-]{Inter}
+  UprightFont=*-Buch,
+  ItalicFont=*-BuchKursiv,
+  BoldFont=*-Dreiviertelfett,
+]{TestSohne}
 
 \newfontfamily\bodyfontlight[
   Path=\@fontdir,
-  UprightFont=*-Regular,
-  ItalicFont=*-Italic,
-  BoldFont=*-Bold,
-]{Inter}
+  UprightFont=*-Buch,
+  ItalicFont=*-BuchKursiv,
+  BoldFont=*-Dreiviertelfett,
+]{TestSohne}
 
 
 %-------------------------------------------------------------------------------
